@@ -1126,12 +1126,12 @@ namespace MissionPlanner
                 this.Icon = Icon.FromHandle(((Bitmap) Program.IconFile).GetHicon());
             }
 
-            MenuArduPilot.Image = new Bitmap(Properties.Resources._0d92fed790a3a70170e61a86db103f399a595c70,
-                (int) (200), 31);
-            MenuArduPilot.Width = MenuArduPilot.Image.Width;
+            //MenuArduPilot.Image = new Bitmap(Properties.Resources._0d92fed790a3a70170e61a86db103f399a595c70,
+            //    (int) (200), 31);
+            //MenuArduPilot.Width = MenuArduPilot.Image.Width;
 
-            if (Program.Logo2 != null)
-                MenuArduPilot.Image = Program.Logo2;
+            //if (Program.Logo2 != null)
+            //    MenuArduPilot.Image = Program.Logo2;
 
             Application.DoEvents();
 
@@ -2544,9 +2544,7 @@ namespace MissionPlanner
                 connectButtonUpdate = DateTime.Now;
             }
         }
-
         ManualResetEvent PluginThreadrunner = new ManualResetEvent(false);
-
         private void PluginThread()
         {
             Hashtable nextrun = new Hashtable();
@@ -2608,10 +2606,8 @@ namespace MissionPlanner
                 {
                     log.Error(ex);
                 }
-
                 Plugin.PluginLoader.Plugins.Remove(plugin);
             }
-
             try
             {
                 PluginThreadrunner.Set();
@@ -2700,10 +2696,8 @@ namespace MissionPlanner
                                 MainV2.speechEngine.SpeakAsync(ArduPilot.Common.speechConversion(comPort.MAV,
                                     "" + Settings.Instance["speechcustom"]));
                             }
-
                             speechcustomtime = DateTime.Now;
                         }
-
                         // speech for battery alerts
                         //speechbatteryvolt
                         float warnvolt = Settings.Instance.GetFloat("speechbatteryvolt");
@@ -2732,7 +2726,6 @@ namespace MissionPlanner
                             }
                         }
                     }
-
                     // speech for airspeed alerts
                     if (speechEnable && speechEngine != null && (DateTime.Now - speechlowspeedtime).TotalSeconds > 10 &&
                         (MainV2.comPort.logreadmode || comPort.BaseStream.IsOpen))
@@ -2769,7 +2762,6 @@ namespace MissionPlanner
                             }
                         }
                     }
-
                     // speech altitude warning - message high warning
                     if (speechEnable && speechEngine != null &&
                         (MainV2.comPort.logreadmode || comPort.BaseStream.IsOpen))
@@ -2800,8 +2792,6 @@ namespace MissionPlanner
                         catch
                         {
                         } // silent fail
-
-
                         try
                         {
                             // say the latest high priority message
@@ -4651,11 +4641,13 @@ namespace MissionPlanner
         {
             try
             {
-                System.Diagnostics.Process.Start("https://ardupilot.org/?utm_source=Menu&utm_campaign=MP");
+                //System.Diagnostics.Process.Start("https://ardupilot.org/?utm_source=Menu&utm_campaign=MP");
+                System.Diagnostics.Process.Start(@"C:\Program Files (x86)\DetoRed2\DetoRed.exe");
             }
             catch
             {
-                CustomMessageBox.Show("Failed to open url https://ardupilot.org");
+                //CustomMessageBox.Show("Failed to open url https://ardupilot.org");
+                CustomMessageBox.Show("Failed to open Deto App");
             }
         }
 

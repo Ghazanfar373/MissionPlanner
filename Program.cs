@@ -239,7 +239,7 @@ namespace MissionPlanner
                 : System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             Splash.Text = name + " " + Application.ProductVersion + " build " + strVersion;
             Console.WriteLine("Splash.Show()");
-            Splash.Show();
+            //Splash.Show();
 
             Console.WriteLine("Debugger.IsAttached " + Debugger.IsAttached);
             if (Debugger.IsAttached)

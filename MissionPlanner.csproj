@@ -4581,6 +4581,9 @@
     <Content Include="quaternion.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\crosshair.png" />
+    <None Include="Resources\crosshair1.png" />
+    <None Include="Resources\ico36.png" />
     <Content Include="rotmat.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

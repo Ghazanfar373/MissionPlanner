@@ -7,14 +7,12 @@ using MissionPlanner.Utilities;
 using System;
 using System.Reflection;
 using System.Windows.Forms;
-
 namespace MissionPlanner.GCSViews
 {
     public partial class SoftwareConfig : MyUserControl, IActivate
     {
         internal static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static string lastpagename = "";
-
         public bool gotAllParams
         {
             get
@@ -25,7 +23,6 @@ namespace MissionPlanner.GCSViews
                 {
                     return false;
                 }
-
                 return true;
             }
         }
@@ -33,11 +30,9 @@ namespace MissionPlanner.GCSViews
         {
             InitializeComponent();
         }
-
         public void Activate()
         {
         }
-
         private BackstageViewPage AddBackstageViewPage(Type userControl, string headerText,
             BackstageViewPage Parent = null, bool advanced = false)
         {
