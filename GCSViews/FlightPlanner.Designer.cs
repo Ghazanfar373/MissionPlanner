@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 using MissionPlanner.Controls;
-
 namespace MissionPlanner.GCSViews
 {
     partial class FlightPlanner
@@ -30,7 +29,6 @@ namespace MissionPlanner.GCSViews
             if (geofenceoverlay != null) geofenceoverlay.Dispose();
             if (drawnpolygonsoverlay != null) drawnpolygonsoverlay.Dispose();
             if (center != null) center.Dispose(); 
-
             base.Dispose(disposing);
         }
 
@@ -78,6 +76,11 @@ namespace MissionPlanner.GCSViews
             this.coords1 = new MissionPlanner.Controls.Coords();
             this.lbl_status = new System.Windows.Forms.Label();
             this.panelWaypoints = new System.Windows.Forms.Panel();
+            this.labelInputLong = new System.Windows.Forms.Label();
+            this.labelInputLat = new System.Windows.Forms.Label();
+            this.textBoxInputLong = new System.Windows.Forms.TextBox();
+            this.textBoxInputLat = new System.Windows.Forms.TextBox();
+            this.buttonJSRMission = new MissionPlanner.Controls.MyButton();
             this.but_mincommands = new MissionPlanner.Controls.MyButton();
             this.CMB_altmode = new System.Windows.Forms.ComboBox();
             this.CHK_splinedefault = new System.Windows.Forms.CheckBox();
@@ -402,6 +405,11 @@ namespace MissionPlanner.GCSViews
             // 
             // panelWaypoints
             // 
+            this.panelWaypoints.Controls.Add(this.labelInputLong);
+            this.panelWaypoints.Controls.Add(this.labelInputLat);
+            this.panelWaypoints.Controls.Add(this.textBoxInputLong);
+            this.panelWaypoints.Controls.Add(this.textBoxInputLat);
+            this.panelWaypoints.Controls.Add(this.buttonJSRMission);
             this.panelWaypoints.Controls.Add(this.but_mincommands);
             this.panelWaypoints.Controls.Add(this.CMB_altmode);
             this.panelWaypoints.Controls.Add(this.CHK_splinedefault);
@@ -419,6 +427,34 @@ namespace MissionPlanner.GCSViews
             resources.ApplyResources(this.panelWaypoints, "panelWaypoints");
             this.panelWaypoints.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelWaypoints.Name = "panelWaypoints";
+            // 
+            // labelInputLong
+            // 
+            resources.ApplyResources(this.labelInputLong, "labelInputLong");
+            this.labelInputLong.Name = "labelInputLong";
+            // 
+            // labelInputLat
+            // 
+            resources.ApplyResources(this.labelInputLat, "labelInputLat");
+            this.labelInputLat.Name = "labelInputLat";
+            // 
+            // textBoxInputLong
+            // 
+            resources.ApplyResources(this.textBoxInputLong, "textBoxInputLong");
+            this.textBoxInputLong.Name = "textBoxInputLong";
+            this.textBoxInputLong.TextChanged += new System.EventHandler(this.textBoxInputLong_TextChanged);
+            // 
+            // textBoxInputLat
+            // 
+            resources.ApplyResources(this.textBoxInputLat, "textBoxInputLat");
+            this.textBoxInputLat.Name = "textBoxInputLat";
+            // 
+            // buttonJSRMission
+            // 
+            resources.ApplyResources(this.buttonJSRMission, "buttonJSRMission");
+            this.buttonJSRMission.Name = "buttonJSRMission";
+            this.buttonJSRMission.UseVisualStyleBackColor = true;
+            this.buttonJSRMission.Click += new System.EventHandler(this.buttonJSRMission_Click);
             // 
             // but_mincommands
             // 
@@ -829,6 +865,7 @@ namespace MissionPlanner.GCSViews
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteWPToolStripMenuItem,
             this.insertWpToolStripMenuItem,
@@ -1391,6 +1428,7 @@ namespace MissionPlanner.GCSViews
             // 
             // contextMenuStripPoly
             // 
+            this.contextMenuStripPoly.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripPoly.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addPolygonPointToolStripMenuItem,
             this.clearPolygonToolStripMenuItem,
@@ -1429,6 +1467,7 @@ namespace MissionPlanner.GCSViews
             // 
             // contextMenuStripZoom
             // 
+            this.contextMenuStripZoom.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripZoom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.zoomToVehicleToolStripMenuItem,
             this.zoomToMissionToolStripMenuItem,
@@ -1654,5 +1693,10 @@ namespace MissionPlanner.GCSViews
         private DataGridViewTextBoxColumn TagData;
         private ToolStripMenuItem convertWPToPolygonToolStripMenuItem;
         private ToolStripMenuItem fromCurrentWaypointsToolStripMenuItem;
+        private MyButton buttonJSRMission;
+        private TextBox textBoxInputLong;
+        private TextBox textBoxInputLat;
+        private Label labelInputLong;
+        private Label labelInputLat;
     }
 }

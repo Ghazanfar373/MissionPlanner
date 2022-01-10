@@ -7227,6 +7227,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                         if (list.Count() < length)
                             break;
                         list = list.Skip(length);
+                        
                     }
                 }
             }
@@ -7570,15 +7571,11 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     }
                 }
             }
-
-
             if (!bPngCapable)
             {
                 CustomMessageBox.Show("Invalid WMS Server response: Server unable to return PNG images.");
                 return;
             }
-
-
             //now search through all layer -> srs nodes for EPSG:4326 compatibility
             bool bEpsgCapable = false;
             XmlNodeList srsELements = xCapabilitesResponse.SelectNodes("//SRS", nsmgr);
@@ -7590,16 +7587,12 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     break;
                 }
             }
-
-
             if (!bEpsgCapable)
             {
                 CustomMessageBox.Show(
                     "Invalid WMS Server response: Server unable to return EPSG:4326 / WGS84 compatible images.");
                 return;
             }
-
-
             // the server is capable of serving our requests - now check if there is a layer to be selected
             // Display layer title in the input box instead of layer name.
             // format: layer -> layer -> name
@@ -7630,7 +7623,6 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                             title = titleText;
                         }
                     }
-
                     szListLayerName.Add(name);
 
                     szLayerSelection += string.Format("{0}: {1}\n ", iSelect, title);
@@ -7679,6 +7671,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 else
                 {
                     MainMap.Zoom = 15;
+                    
                 }
             }
         }
@@ -7706,6 +7699,131 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             MainMap.Position = MainV2.comPort.MAV.cs.HomeLocation;
             if (MainMap.Zoom < 17)
                 MainMap.Zoom = 17;
+        }
+
+        private void buttonJSRMission_Click(object sender, EventArgs e)
+        {
+            if (Commands.Rows.Count > 0)
+            {
+            //    foreach (DataGridViewRow row in Commands.Rows)
+            //    {
+            //        foreach (DataGridViewCell cell in row.Cells)
+            //        {
+            //            System.Diagnostics.Debug.WriteLine(cell.Value);
+            //        }
+            //    }
+                string lat = Commands.Rows[0].Cells[5].Value.ToString();
+                string lon = Commands.Rows[0].Cells[6].Value.ToString();
+                string angle = Commands.Rows[0].Cells[19].Value.ToString();
+                double latitude = Double.Parse(lat);
+                double longitude = Double.Parse(lon);
+                int zavia = Int32.Parse(angle);
+
+                var altdata = srtm.getAltitude(latitude, longitude, MainMap.Zoom);
+                double altSeaLevel = altdata.alt * CurrentState.multiplieralt;
+
+                System.Diagnostics.Debug.WriteLine("Latitude: " + lat);
+                System.Diagnostics.Debug.WriteLine("Longitude: " + lon);
+                System.Diagnostics.Debug.WriteLine("Angle: " + zavia);
+                System.Diagnostics.Debug.WriteLine("Alt Sea Level: " + (altSeaLevel+200)/1000);
+                Commands.Rows.RemoveAt(0);
+                int oppositeZavia = zavia + 180; if (oppositeZavia > 360) oppositeZavia -= 360;
+                double[] waypoints2 = calculateWP(latitude, longitude, oppositeZavia, (altSeaLevel + 200) / 1000);
+                double[] waypoints3 = calculateWP(waypoints2[0], waypoints2[1], oppositeZavia, (altSeaLevel + 200) / 1000);
+                //Commands.Rows.RemoveAt(32);
+                AddWPToMap(waypoints3[0], waypoints3[1], (int)Math.Ceiling(altSeaLevel+200));
+                AddWPToMap(waypoints2[0], waypoints2[1], (int)Math.Ceiling(altSeaLevel+200));
+                //ChangeColumnHeader(MAVLink.MAV_CMD.LAND.ToString());
+                //DataGridViewComboBoxCell cello = (DataGridViewComboBoxCell)Commands.Rows[selectedrow].Cells[0];
+                //cello.Items.IndexOf(2);
+                AddWPToMap(latitude, longitude, (int)Math.Ceiling(altSeaLevel) - 25);
+
+                Thread.Sleep(100);
+                //Commands.Rows[selectedrow].Cells[Param1.Index].Value = topi;
+
+                Commands.Rows[selectedrow].Cells[Alt.Index].Value = altSeaLevel;
+                Commands.Rows[selectedrow].Cells[Command.Index].Value = MAVLink.MAV_CMD.LAND.ToString();
+
+
+                //AddWPToMap(latitude,longitude,600);
+                System.Diagnostics.Debug.WriteLine("DWFD");
+               
+                //MainMap.Bearing = zavia;
+                
+         
+                MainMap.Zoom = 14;
+                Thread.Sleep(300);
+                //CustomMessageBox.Show("Do you need elevation graph?", Strings.Done);
+            }
+      
+      }
+
+        //Commands.Rows[selectedrow].Cells[Command.Index].Value = MAVLink.MAV_CMD.SPLINE_WAYPOINT.ToString();
+
+        //            ChangeColumnHeader(MAVLink.MAV_CMD.SPLINE_WAYPOINT.ToString());
+
+        //float d = Radius;
+        //float R = 6371000;
+
+        //var lat2 = Math.Asin(Math.Sin(MouseDownEnd.Lat * MathHelper.deg2rad) * Math.Cos(d / R) +
+        //                     Math.Cos(MouseDownEnd.Lat * MathHelper.deg2rad) * Math.Sin(d / R) *
+        //                     Math.Cos(a * MathHelper.deg2rad));
+        //var lon2 = MouseDownEnd.Lng * MathHelper.deg2rad +
+        //           Math.Atan2(
+        //               Math.Sin(a * MathHelper.deg2rad) * Math.Sin(d / R) *
+        //               Math.Cos(MouseDownEnd.Lat * MathHelper.deg2rad),
+        //               Math.Cos(d / R) - Math.Sin(MouseDownEnd.Lat * MathHelper.deg2rad) * Math.Sin(lat2));
+
+        //PointLatLng pll = new PointLatLng(lat2 * MathHelper.rad2deg, lon2 * MathHelper.rad2deg);
+        //setfromMap(pll.Lat, pll.Lng, stepalt);
+
+
+        //https://gamedev.stackexchange.com/questions/80277/how-to-find-point-on-a-circle-thats-opposite-another-point
+
+        private double[] calculateWP(double latitude, double longitude, double rad, double distance) {
+
+            //double rad = 264.10;
+            rad *= Math.PI / 180;
+
+            double angDist = distance / 6371;
+            System.Diagnostics.Debug.WriteLine("Angular distance:" + angDist);
+
+            latitude *= Math.PI / 180;
+            longitude *= Math.PI / 180;
+
+            double lat2 = Math.Asin(Math.Sin(latitude) * Math.Cos(angDist) + Math.Cos(latitude) * Math.Sin(angDist) * Math.Cos(rad));
+
+            double forAtana = Math.Sin(rad) * Math.Sin(angDist) * Math.Cos(latitude);
+            double forAtanb = Math.Cos(angDist) - Math.Sin(latitude) * Math.Sin(lat2);
+
+            double lon2 = longitude + Math.Atan2(forAtana, forAtanb);
+
+            //double finalLat = latitude + lat2;
+            //double finalLon = longitude + lon2;
+
+            lat2 *= 180 / Math.PI;
+            lon2 *= 180 / Math.PI;
+
+            System.Diagnostics.Debug.WriteLine("Target latitude :" + lat2);
+
+            System.Diagnostics.Debug.WriteLine("Target longitude : " + lon2);
+            return new double[] {lat2,lon2 };
+          
+        }
+
+        private void textBoxInputLong_TextChanged(object sender, EventArgs e)
+        {
+            double lat = Double.Parse(textBoxInputLat.Text.ToString());
+            double lon = Double.Parse(textBoxInputLong.Text.ToString());
+            //string latstr = MainV2.comPort.MAV.cs.HomeLocation.Lat.ToString();
+            //string lonstr = MainV2.comPort.MAV.cs.HomeLocation.Lng.ToString();
+
+            System.Diagnostics.Debug.WriteLine(lat + " .... "+lon);
+;
+            var altdata = srtm.getAltitude(lat, lon, MainMap.Zoom);
+            double altSeaLevel = altdata.alt * CurrentState.multiplieralt;
+            AddWPToMap(lat, lon, (int)Math.Ceiling(altSeaLevel) +200);
+
         }
     }
 }
