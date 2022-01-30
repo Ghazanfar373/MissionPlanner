@@ -50,7 +50,8 @@ namespace MissionPlanner.Utilities
             switch (_currentTheme)
             {
                 case Themes.BurntKermit:
-                    ApplyBurntKermitTheme(control, 0);
+                    //ApplyBurntKermitTheme(control, 0);
+                    ApplyNone(control, 0);
                     break;
 
                 case Themes.None:

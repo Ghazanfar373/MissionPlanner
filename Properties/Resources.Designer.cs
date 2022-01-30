@@ -113,6 +113,36 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap airplane_cog {
+            get {
+                object obj = ResourceManager.GetObject("airplane-cog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap airplane_cog1 {
+            get {
+                object obj = ResourceManager.GetObject("airplane-cog1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap airplane_marker {
+            get {
+                object obj = ResourceManager.GetObject("airplane-marker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap airspeed {
             get {
                 object obj = ResourceManager.GetObject("airspeed", resourceCulture);
@@ -273,9 +303,59 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap application_edit {
+            get {
+                object obj = ResourceManager.GetObject("application-edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap archive_cog {
+            get {
+                object obj = ResourceManager.GetObject("archive-cog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap attocurrent {
             get {
                 object obj = ResourceManager.GetObject("attocurrent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap BannerStrip {
+            get {
+                object obj = ResourceManager.GetObject("BannerStrip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap BannerStrip_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("BannerStrip-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap BannerStrip1 {
+            get {
+                object obj = ResourceManager.GetObject("BannerStrip1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -466,6 +546,16 @@ namespace MissionPlanner.Properties {
         public static System.Drawing.Bitmap crosshair {
             get {
                 object obj = ResourceManager.GetObject("crosshair", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap crosshair_black {
+            get {
+                object obj = ResourceManager.GetObject("crosshair_black", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1709,6 +1799,16 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap shield_airplane {
+            get {
+                object obj = ResourceManager.GetObject("shield-airplane", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Shutter {
             get {
                 object obj = ResourceManager.GetObject("Shutter", resourceCulture);
@@ -1732,6 +1832,16 @@ namespace MissionPlanner.Properties {
         public static System.Drawing.Bitmap splashdark {
             get {
                 object obj = ResourceManager.GetObject("splashdark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap stripBanner {
+            get {
+                object obj = ResourceManager.GetObject("stripBanner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

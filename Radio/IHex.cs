@@ -99,7 +99,7 @@ namespace MissionPlanner.Radio
 
             merge_index.Add(start + len, start);
         }
-
+        
         private void idx_remove(uint start, byte[] data)
         {
             var len = (uint)data.GetLength(0);

@@ -242,7 +242,6 @@ namespace FenceDist
             });
 
             marker = new GMapMarkerFill(bitmap, va, loc);
-
             overlay.Markers.Clear();
             overlay.Markers.Add(marker);
 

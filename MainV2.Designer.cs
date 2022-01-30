@@ -55,6 +55,7 @@ namespace MissionPlanner
             this.menu = new MissionPlanner.Controls.MyButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.status1 = new MissionPlanner.Controls.Status();
+            this.sampleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.CTX_mainmenu.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,6 +64,7 @@ namespace MissionPlanner
             // MainMenu
             // 
             resources.ApplyResources(this.MainMenu, "MainMenu");
+            this.MainMenu.BackColor = System.Drawing.Color.CornflowerBlue;
             this.MainMenu.ContextMenuStrip = this.CTX_mainmenu;
             this.MainMenu.GripMargin = new System.Windows.Forms.Padding(0);
             this.MainMenu.ImageScalingSize = new System.Drawing.Size(45, 39);
@@ -75,7 +77,8 @@ namespace MissionPlanner
             this.MenuHelp,
             this.MenuConnect,
             this.toolStripConnectionControl,
-            this.MenuArduPilot});
+            this.MenuArduPilot,
+            this.sampleToolStripMenuItem});
             this.MainMenu.Name = "MainMenu";
             this.MainMenu.ShowItemToolTips = true;
             this.MainMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MainMenu_ItemClicked);
@@ -137,6 +140,7 @@ namespace MissionPlanner
             // MenuFlightPlanner
             // 
             this.MenuFlightPlanner.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.MenuFlightPlanner.Image = global::MissionPlanner.Properties.Resources.application_edit;
             resources.ApplyResources(this.MenuFlightPlanner, "MenuFlightPlanner");
             this.MenuFlightPlanner.Margin = new System.Windows.Forms.Padding(0);
             this.MenuFlightPlanner.Name = "MenuFlightPlanner";
@@ -177,7 +181,8 @@ namespace MissionPlanner
             // MenuConnect
             // 
             this.MenuConnect.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.MenuConnect.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.MenuConnect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.MenuConnect.Image = global::MissionPlanner.Properties.Resources.airplane_cog;
             resources.ApplyResources(this.MenuConnect, "MenuConnect");
             this.MenuConnect.Margin = new System.Windows.Forms.Padding(0);
             this.MenuConnect.Name = "MenuConnect";
@@ -196,8 +201,8 @@ namespace MissionPlanner
             // 
             this.MenuArduPilot.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.MenuArduPilot, "MenuArduPilot");
-            this.MenuArduPilot.ForeColor = System.Drawing.Color.White;
-            this.MenuArduPilot.Image = global::MissionPlanner.Properties.Resources.crosshair;
+            this.MenuArduPilot.ForeColor = System.Drawing.Color.Black;
+            this.MenuArduPilot.Image = global::MissionPlanner.Properties.Resources.crosshair_black;
             this.MenuArduPilot.Margin = new System.Windows.Forms.Padding(0);
             this.MenuArduPilot.Name = "MenuArduPilot";
             this.MenuArduPilot.Click += new System.EventHandler(this.MenuArduPilot_Click);
@@ -222,6 +227,12 @@ namespace MissionPlanner
             resources.ApplyResources(this.status1, "status1");
             this.status1.Name = "status1";
             this.status1.Percent = 0D;
+            // 
+            // sampleToolStripMenuItem
+            // 
+            this.sampleToolStripMenuItem.Image = global::MissionPlanner.Properties.Resources._0d92fed790a3a70170e61a86db103f399a595c70;
+            resources.ApplyResources(this.sampleToolStripMenuItem, "sampleToolStripMenuItem");
+            this.sampleToolStripMenuItem.Name = "sampleToolStripMenuItem";
             // 
             // MainV2
             // 
@@ -263,5 +274,6 @@ namespace MissionPlanner
         public System.Windows.Forms.ToolStripButton MenuHelp;
         public System.Windows.Forms.ToolStripButton MenuArduPilot;
         public Controls.Status status1;
+        private System.Windows.Forms.ToolStripMenuItem sampleToolStripMenuItem;
     }
 }

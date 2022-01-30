@@ -23,7 +23,7 @@
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
     <RunAnalyzers>false</RunAnalyzers>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>D:\MissionPlannerV3\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -33,9 +33,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
@@ -60,6 +61,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>9FE8F44DDB9C74E8D5310B52F88DC592D3DB1F41</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MissionPlanner_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="APMPlannerXplanes\**" />
@@ -618,6 +631,7 @@
     </None>
     <None Include="MissionPlanner.GCSViews.ConfigurationView.ConfigGPSOrder+GPSCAN.datasource" />
     <None Include="MissionPlanner.GCSViews.ConfigurationView.ConfigHWCompass2+CompassDeviceInfo.datasource" />
+    <None Include="MissionPlanner_TemporaryKey.pfx" />
     <None Include="plugins\example10-canlogfile.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -4584,6 +4598,15 @@
     <None Include="Resources\crosshair.png" />
     <None Include="Resources\crosshair1.png" />
     <None Include="Resources\ico36.png" />
+    <None Include="Resources\airplane-cog.png" />
+    <None Include="Resources\application-edit.png" />
+    <None Include="Resources\airplane-marker.png" />
+    <None Include="Resources\archive-cog.png" />
+    <None Include="Resources\shield-airplane.png" />
+    <None Include="Resources\crosshair_black.png" />
+    <None Include="Resources\stripBanner.png" />
+    <None Include="Resources\BannerStrip.png" />
+    <None Include="Resources\BannerStrip-removebg-preview.png" />
     <Content Include="rotmat.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
