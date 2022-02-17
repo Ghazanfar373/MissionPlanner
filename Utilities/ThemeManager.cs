@@ -66,7 +66,9 @@ namespace MissionPlanner.Utilities
             strThemeName = "BurntKermit.mpsystheme";
 
             colors.Add("Background", Color.FromArgb(0x26, 0x27, 0x28), "BGColor");						// This changes the colour of the main menu background
+            //colors.Add("Background", Color.Yellow, "BGColor");
             colors.Add("Control Background", Color.FromArgb(0x43, 0x44, 0x45), "ControlBGColor");		// This changes the colour of the sub menu backgrounds
+            //colors.Add("Control Background", Color.Red, "ControlBGColor");
             colors.Add("Text", Color.White, "TextColor");										// This changes the colour of text
             colors.Add("TextBox Background", Color.FromArgb(0x43, 0x44, 0x45), "BGColorTextBox");		// This changes the colour of the background of textboxes
             colors.Add("Button Text", Color.FromArgb(64, 87, 4), "ButtonTextColor");				// This changes the colour of button text
@@ -141,6 +143,7 @@ namespace MissionPlanner.Utilities
                 GCSViews.FlightData.myhud.skyColor1 = ThemeManager.HudSkyTop;
                 GCSViews.FlightData.myhud.skyColor2 = ThemeManager.HudSkyBot;
                 GCSViews.FlightData.myhud.hudcolor = ThemeManager.HudText;
+                
             }
         }
     }
@@ -163,6 +166,8 @@ namespace MissionPlanner.Utilities
 
         // Initialize to the default theme (BurntKermit)
         public static Color BGColor = Color.FromArgb(0x26, 0x27, 0x28);
+        //public static Color BGColor = Color.FromArgb(0xB3, 0x3F, 0x40);
+        //B33F40
         public static Color ControlBGColor = Color.FromArgb(0x43, 0x44, 0x45);
         public static Color TextColor = Color.White;
         public static Color BGColorTextBox;
@@ -203,7 +208,7 @@ namespace MissionPlanner.Utilities
 
             String runningDir = Settings.GetRunningDirectory();
             String userDir = Settings.GetUserDataDirectory();
-
+           
             if (ThemeNames == null)
             {
                 ThemeNames = new List<String>();
@@ -241,6 +246,7 @@ namespace MissionPlanner.Utilities
                 log.Error(ex);
             }
         }
+
 
 
         public static void LoadTheme(string strThemeName)
@@ -1227,9 +1233,9 @@ mc:Ignorable=""d""
                 }
                 else if (ctl.GetType() == typeof(GradientBG))
                 {
-                    //    var rbg = ctl as GradientBG;
-                    //    rbg.CenterColor = ControlBGColor;
-                    //    rbg.OutsideColor = ButBG;
+                   //    var rbg = ctl as GradientBG;
+                   //    rbg.CenterColor = ControlBGColor;
+                   //    rbg.OutsideColor = ButBG;
                 }
                 else if (ctl.GetType() == typeof(Form))
                 {

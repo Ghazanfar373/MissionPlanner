@@ -333,6 +333,16 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Banner_light {
+            get {
+                object obj = ResourceManager.GetObject("Banner_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap BannerStrip {
             get {
                 object obj = ResourceManager.GetObject("BannerStrip", resourceCulture);

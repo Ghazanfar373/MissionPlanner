@@ -7718,19 +7718,36 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 double latitude = Double.Parse(lat);
                 double longitude = Double.Parse(lon);
                 int zavia = Int32.Parse(angle);
-
+                double latHome = MainV2.comPort.MAV.cs.PlannedHomeLocation.Lat;
+                double lonHome = MainV2.comPort.MAV.cs.PlannedHomeLocation.Lng;
+                double altHome = MainV2.comPort.MAV.cs.PlannedHomeLocation.Alt;
                 var altdata = srtm.getAltitude(latitude, longitude, MainMap.Zoom);
                 double altSeaLevel = altdata.alt * CurrentState.multiplieralt;
 
-                System.Diagnostics.Debug.WriteLine("Latitude: " + lat);
-                System.Diagnostics.Debug.WriteLine("Longitude: " + lon);
-                System.Diagnostics.Debug.WriteLine("Angle: " + zavia);
+                System.Diagnostics.Debug.WriteLine("Latitude: " + latHome);
+                System.Diagnostics.Debug.WriteLine("Longitude: " + lonHome);
+                System.Diagnostics.Debug.WriteLine("Angle: " + altHome);
                 System.Diagnostics.Debug.WriteLine("Alt Sea Level: " + (altSeaLevel+200)/1000);
                 Commands.Rows.RemoveAt(0);
-                int oppositeZavia = zavia + 180; if (oppositeZavia > 360) oppositeZavia -= 360;
+                int oppositeZavia   = zavia + 180; if (oppositeZavia > 360) oppositeZavia -= 360;
+                
                 double[] waypoints2 = calculateWP(latitude, longitude, oppositeZavia, (altSeaLevel + 200) / 1000);
                 double[] waypoints3 = calculateWP(waypoints2[0], waypoints2[1], oppositeZavia, (altSeaLevel + 200) / 1000);
+                double[] waypointSetRelay = calculateWP(waypoints3[0], waypoints3[1], oppositeZavia, 0.25);
+                double[] waypointBeforeRelay = calculateWP(waypointSetRelay[0],waypointSetRelay[1],oppositeZavia,0.35);
+                double[] waypointTAKEOFF = calculateWP(waypointBeforeRelay[0], waypointBeforeRelay[1], oppositeZavia, 0.55);
+                
                 //Commands.Rows.RemoveAt(32);
+
+                AddWPToMap(waypointTAKEOFF[0], waypointTAKEOFF[1], (int)Math.Ceiling(altSeaLevel + 200));
+                Thread.Sleep(50);
+                Commands.Rows[selectedrow].Cells[Command.Index].Value = MAVLink.MAV_CMD.TAKEOFF.ToString();
+                Thread.Sleep(50);
+                AddWPToMap(waypointBeforeRelay[0], waypointBeforeRelay[1], (int)Math.Ceiling(altSeaLevel + 200));
+                AddWPToMap(waypointSetRelay[0], waypointSetRelay[1], (int)Math.Ceiling(altSeaLevel + 200));
+
+                Commands.Rows[selectedrow].Cells[Command.Index].Value = MAVLink.MAV_CMD.DO_SET_RELAY.ToString();
+
                 AddWPToMap(waypoints3[0], waypoints3[1], (int)Math.Ceiling(altSeaLevel+200));
                 AddWPToMap(waypoints2[0], waypoints2[1], (int)Math.Ceiling(altSeaLevel+200));
                 //ChangeColumnHeader(MAVLink.MAV_CMD.LAND.ToString());
@@ -7738,7 +7755,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                 //cello.Items.IndexOf(2);
                 AddWPToMap(latitude, longitude, (int)Math.Ceiling(altSeaLevel) - 25);
 
-                Thread.Sleep(100);
+                Thread.Sleep(50);
                 //Commands.Rows[selectedrow].Cells[Param1.Index].Value = topi;
 
                 Commands.Rows[selectedrow].Cells[Alt.Index].Value = altSeaLevel;
@@ -7746,13 +7763,13 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
 
                 //AddWPToMap(latitude,longitude,600);
-                System.Diagnostics.Debug.WriteLine("DWFD");
+                //System.Diagnostics.Debug.WriteLine("DWFD");
                
                 //MainMap.Bearing = zavia;
                 
          
-                MainMap.Zoom = 14;
-                Thread.Sleep(300);
+                MainMap.Zoom = 16;
+                Thread.Sleep(100);
                 //CustomMessageBox.Show("Do you need elevation graph?", Strings.Done);
             }
       

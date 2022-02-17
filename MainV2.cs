@@ -59,6 +59,7 @@ namespace MissionPlanner
             public abstract Image disconnect { get; }
             public abstract Image bg { get; }
             public abstract Image wizard { get; }
+            public abstract Image banner { get; }
         }
 
 
@@ -74,6 +75,17 @@ namespace MissionPlanner
                         return global::MissionPlanner.Properties.Resources.light_flightdata_icon;
                 }
             }
+            public override Image banner
+            {
+                get
+                {
+                    if (File.Exists($"{running_directory}Banner_light.png"))
+                        return Image.FromFile($"{running_directory}Banner_light.png");
+                    else
+                        return global::MissionPlanner.Properties.Resources.Banner_light;
+                }
+            }
+
 
             public override Image fp
             {
@@ -90,10 +102,10 @@ namespace MissionPlanner
             {
                 get
                 {
-                    if (File.Exists($"{running_directory}airplane_cog.png"))
-                        return Image.FromFile($"{running_directory}airplane_cog.png");
+                    if (File.Exists($"{running_directory}light_initialsetup_icon.png"))
+                        return Image.FromFile($"{running_directory}light_initialsetup_icon.png");
                     else
-                        return global::MissionPlanner.Properties.Resources.airplane_cog;
+                        return global::MissionPlanner.Properties.Resources.light_initialsetup_icon;
                 }
             }
 
@@ -209,6 +221,16 @@ namespace MissionPlanner
                         return Image.FromFile($"{running_directory}airplane_marker.png");
                     else
                         return global::MissionPlanner.Properties.Resources.airplane_marker;
+                }
+            }
+            public override Image banner
+            {
+                get
+                {
+                    if (File.Exists($"{running_directory}Banner_light.png"))
+                        return Image.FromFile($"{running_directory}Banner_light.png");
+                    else
+                        return global::MissionPlanner.Properties.Resources.Banner_light;
                 }
             }
 
@@ -550,8 +572,8 @@ namespace MissionPlanner
             MenuHelp.Visible = DisplayConfiguration.displayHelp;
             MissionPlanner.Controls.BackstageView.BackstageView.Advanced = DisplayConfiguration.isAdvancedMode;
             MenuHelp.Visible = false;
-            sampleToolStripMenuItem.Image = global::MissionPlanner.Properties.Resources.BannerStrip1;
-            sampleToolStripMenuItem.Padding = new Padding(24);
+            //sampleToolStripMenuItem.Image = global::MissionPlanner.Properties.Resources.BannerStrip;
+            //sampleToolStripMenuItem.Padding = new Padding(24);
             //sampleToolStripMenuItem.Margin = new Margi
 
             // force autohide on
@@ -1127,11 +1149,14 @@ namespace MissionPlanner
             //    this.Icon = Icon.FromHandle(((Bitmap) Program.IconFile).GetHicon());
             //}
 
-            //MenuArduPilot.Image = new Bitmap(Properties.Resources._0d92fed790a3a70170e61a86db103f399a595c70,
-            //    (int) (200), 31);
+            MenuArduPilot.Image = new Bitmap(Properties.Resources.crosshair_black,
+             (int) (200), 31);
+            MenuArduPilot.ForeColor = Color.White;
             //MenuArduPilot.Width = MenuArduPilot.Image.Width;
-            sampleToolStripMenuItem.Image = new Bitmap(Properties.Resources.BannerStrip1,(int)(280),44);
+            sampleToolStripMenuItem.Image = new Bitmap(displayicons.banner,(int)(180),44);
             sampleToolStripMenuItem.Width = sampleToolStripMenuItem.Image.Width;
+            sampleToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+            //sampleToolStripMenuItem.Visible = true;
             //sampleToolStripMenuItem.Width = sampleToolStripMenuItem.Image.Height;
             //if (Program.Logo2 != null)
             //    MenuArduPilot.Image = Program.Logo2;
@@ -1243,9 +1268,16 @@ namespace MissionPlanner
 
             displayicons = icons;
 
+            //sample
             //MainMenu.BackColor = SystemColors.MenuBar;
-            MainMenu.BackColor = Color.FromArgb(150, 188, 233, 255);
-            MainMenu.BackgroundImage = displayicons.bg;
+            MainMenu.BackColor = Color.FromArgb(0, 179, 63, 64);
+
+            MainMenu.BackgroundImage = null;
+            //MainMenu.BackgroundImage = displayicons.bg;
+            MainMenu.AutoSize = false;
+            
+            //MainMenu.Stretch = true;
+            //MenuArduPilot.Visible = false;
             //panel1.Dock = DockStyle.Left;
             //MainMenu.Dock = DockStyle.Left;
 
@@ -1259,6 +1291,7 @@ namespace MissionPlanner
             MenuConfigTune.Image = displayicons.config_tuning;
             MenuConnect.Image = displayicons.connect;
             MenuHelp.Image = displayicons.help;
+            MenuArduPilot.Image = displayicons.banner;
             
 
 
@@ -1269,6 +1302,7 @@ namespace MissionPlanner
             MenuConfigTune.ForeColor = ThemeManager.TextColor;
             MenuConnect.ForeColor = ThemeManager.TextColor;
             MenuHelp.ForeColor = ThemeManager.TextColor;
+            MenuArduPilot.ForeColor = ThemeManager.TextColor;
         }
 
         void adsb_UpdatePlanePosition(object sender, MissionPlanner.Utilities.adsb.PointLatLngAltHdg adsb)
@@ -4609,7 +4643,7 @@ namespace MissionPlanner
                     try
                     {
                         item.BackColor = Color.Transparent;
-                        item.BackgroundImage = displayicons.bg; //.BackColor = Color.Black;
+                        item.BackgroundImage = null; //.BackColor = Color.Black;
                     }
                     catch
                     {
@@ -4647,7 +4681,7 @@ namespace MissionPlanner
         {
             new ConnectionOptions().Show(this);
         }
-
+        
         private void MenuArduPilot_Click(object sender, EventArgs e)
         {
             try
@@ -4658,7 +4692,7 @@ namespace MissionPlanner
             catch
             {
                 //CustomMessageBox.Show("Failed to open url https://ardupilot.org");
-                CustomMessageBox.Show("Failed to open Deto App");
+                CustomMessageBox.Show("Failed to open JSR app!");
             }
         }
 

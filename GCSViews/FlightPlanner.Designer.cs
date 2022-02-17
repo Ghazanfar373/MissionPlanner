@@ -451,8 +451,11 @@ namespace MissionPlanner.GCSViews
             // 
             // buttonJSRMission
             // 
+            this.buttonJSRMission.BGGradBot = System.Drawing.Color.DarkRed;
+            this.buttonJSRMission.BGGradTop = System.Drawing.Color.Red;
             resources.ApplyResources(this.buttonJSRMission, "buttonJSRMission");
             this.buttonJSRMission.Name = "buttonJSRMission";
+            this.buttonJSRMission.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.buttonJSRMission.UseVisualStyleBackColor = true;
             this.buttonJSRMission.Click += new System.EventHandler(this.buttonJSRMission_Click);
             // 
