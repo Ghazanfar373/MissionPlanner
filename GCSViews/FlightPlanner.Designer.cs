@@ -76,6 +76,7 @@ namespace MissionPlanner.GCSViews
             this.coords1 = new MissionPlanner.Controls.Coords();
             this.lbl_status = new System.Windows.Forms.Label();
             this.panelWaypoints = new System.Windows.Forms.Panel();
+            this.buttonReArrangeMission = new MissionPlanner.Controls.MyButton();
             this.labelInputLong = new System.Windows.Forms.Label();
             this.labelInputLat = new System.Windows.Forms.Label();
             this.textBoxInputLong = new System.Windows.Forms.TextBox();
@@ -405,6 +406,7 @@ namespace MissionPlanner.GCSViews
             // 
             // panelWaypoints
             // 
+            this.panelWaypoints.Controls.Add(this.buttonReArrangeMission);
             this.panelWaypoints.Controls.Add(this.labelInputLong);
             this.panelWaypoints.Controls.Add(this.labelInputLat);
             this.panelWaypoints.Controls.Add(this.textBoxInputLong);
@@ -427,6 +429,13 @@ namespace MissionPlanner.GCSViews
             resources.ApplyResources(this.panelWaypoints, "panelWaypoints");
             this.panelWaypoints.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelWaypoints.Name = "panelWaypoints";
+            // 
+            // buttonReArrangeMission
+            // 
+            resources.ApplyResources(this.buttonReArrangeMission, "buttonReArrangeMission");
+            this.buttonReArrangeMission.Name = "buttonReArrangeMission";
+            this.buttonReArrangeMission.UseVisualStyleBackColor = true;
+            this.buttonReArrangeMission.Click += new System.EventHandler(this.buttonReArrangeMission_Click);
             // 
             // labelInputLong
             // 
@@ -1701,5 +1710,6 @@ namespace MissionPlanner.GCSViews
         private TextBox textBoxInputLat;
         private Label labelInputLong;
         private Label labelInputLat;
+        private MyButton buttonReArrangeMission;
     }
 }

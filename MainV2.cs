@@ -79,10 +79,10 @@ namespace MissionPlanner
             {
                 get
                 {
-                    if (File.Exists($"{running_directory}Banner_light.png"))
-                        return Image.FromFile($"{running_directory}Banner_light.png");
+                    if (File.Exists($"{running_directory}Banner_light1.png"))
+                        return Image.FromFile($"{running_directory}Banner_light1.png");
                     else
-                        return global::MissionPlanner.Properties.Resources.Banner_light;
+                        return global::MissionPlanner.Properties.Resources.Banner_light1;
                 }
             }
 
@@ -227,10 +227,10 @@ namespace MissionPlanner
             {
                 get
                 {
-                    if (File.Exists($"{running_directory}Banner_light.png"))
-                        return Image.FromFile($"{running_directory}Banner_light.png");
+                    if (File.Exists($"{running_directory}Banner_light1.png"))
+                        return Image.FromFile($"{running_directory}Banner_light1.png");
                     else
-                        return global::MissionPlanner.Properties.Resources.Banner_light;
+                        return global::MissionPlanner.Properties.Resources.Banner_light1;
                 }
             }
 
@@ -573,7 +573,7 @@ namespace MissionPlanner
             MissionPlanner.Controls.BackstageView.BackstageView.Advanced = DisplayConfiguration.isAdvancedMode;
             MenuHelp.Visible = false;
             //sampleToolStripMenuItem.Image = global::MissionPlanner.Properties.Resources.BannerStrip;
-            //sampleToolStripMenuItem.Padding = new Padding(24);
+            sampleToolStripMenuItem.Padding = new Padding(4);
             //sampleToolStripMenuItem.Margin = new Margi
 
             // force autohide on
@@ -1153,7 +1153,7 @@ namespace MissionPlanner
              (int) (200), 31);
             MenuArduPilot.ForeColor = Color.White;
             //MenuArduPilot.Width = MenuArduPilot.Image.Width;
-            sampleToolStripMenuItem.Image = new Bitmap(displayicons.banner,(int)(180),44);
+            sampleToolStripMenuItem.Image = new Bitmap(displayicons.banner,(int)(160),54);
             sampleToolStripMenuItem.Width = sampleToolStripMenuItem.Image.Width;
             sampleToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
             //sampleToolStripMenuItem.Visible = true;
@@ -1165,6 +1165,7 @@ namespace MissionPlanner
             Application.DoEvents();
 
             Comports.Add(comPort);
+           
 
             MainV2.comPort.MavChanged += comPort_MavChanged;
 

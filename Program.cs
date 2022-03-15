@@ -167,7 +167,7 @@ namespace MissionPlanner
                 return;
             }
 
-            name = "Mission Planner";
+            name = "JSR Aim Planner";
 
             try
             {
@@ -201,6 +201,7 @@ namespace MissionPlanner
             if (File.Exists(Settings.GetRunningDirectory() + "splashbg.png")) // 600*375
                 SplashBG = new Bitmap(Settings.GetRunningDirectory() + "splashbg.png");
 
+
             try
             {
                 var file = MissionPlanner.Utilities.NativeLibrary.GetLibraryPathname("libSkiaSharp");
@@ -224,6 +225,7 @@ namespace MissionPlanner
             }
 
             Splash = new MissionPlanner.Splash();
+     
             if (SplashBG != null)
             {
                 Splash.BackgroundImage = SplashBG;
@@ -239,7 +241,8 @@ namespace MissionPlanner
                 : System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             Splash.Text = name + " " + Application.ProductVersion + " build " + strVersion;
             Console.WriteLine("Splash.Show()");
-            //Splash.Show();
+             System.Diagnostics.Debug.WriteLine("###########"+SplashBG);
+            Splash.Show();
 
             Console.WriteLine("Debugger.IsAttached " + Debugger.IsAttached);
             if (Debugger.IsAttached)

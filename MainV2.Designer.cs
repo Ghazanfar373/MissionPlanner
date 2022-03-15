@@ -210,7 +210,7 @@ namespace MissionPlanner
             // 
             // sampleToolStripMenuItem
             // 
-            this.sampleToolStripMenuItem.Image = global::MissionPlanner.Properties.Resources._0d92fed790a3a70170e61a86db103f399a595c70;
+            this.sampleToolStripMenuItem.Image = global::MissionPlanner.Properties.Resources.Banner_light1;
             resources.ApplyResources(this.sampleToolStripMenuItem, "sampleToolStripMenuItem");
             this.sampleToolStripMenuItem.Name = "sampleToolStripMenuItem";
             // 
