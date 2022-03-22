@@ -204,6 +204,7 @@ public partial class MAVLink
         new message_info(219, "GOPRO_SET_RESPONSE", 162, 2, 2, typeof( mavlink_gopro_set_response_t )),
         new message_info(225, "EFI_STATUS", 208, 65, 65, typeof( mavlink_efi_status_t )),
         new message_info(226, "RPM", 207, 8, 8, typeof( mavlink_rpm_t )),
+         new message_info(227, "AES_Key", 155, 42, 42, typeof( mavlink_aes_key_t )),
         new message_info(230, "ESTIMATOR_STATUS", 163, 42, 42, typeof( mavlink_estimator_status_t )),
         new message_info(231, "WIND_COV", 105, 40, 40, typeof( mavlink_wind_cov_t )),
         new message_info(232, "GPS_INPUT", 151, 63, 65, typeof( mavlink_gps_input_t )),
@@ -495,6 +496,7 @@ public partial class MAVLink
         GOPRO_SET_RESPONSE = 219,
         EFI_STATUS = 225,
         RPM = 226,
+        AES_Key = 227,
         ESTIMATOR_STATUS = 230,
         WIND_COV = 231,
         GPS_INPUT = 232,
@@ -22545,6 +22547,37 @@ public partial class MAVLink
         [Description("MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version")]
         //[FieldOffset(8)]
         public  byte mavlink_version;
+    };
+    [StructLayout(LayoutKind.Sequential, Pack = 1, Size = 42)]
+    ///<summary> send AES key but make sure you use it only through safe channel </summary>
+    public struct mavlink_aes_key_t
+    {
+        public mavlink_aes_key_t(ulong initial_timestamp, byte target_system, byte target_component, byte[] key)
+        {
+            this.initial_timestamp = initial_timestamp;
+            this.target_system = target_system;
+            this.target_component = target_component;
+            this.key = key;
+
+        }
+        /// <summary>initial timestamp   </summary>
+        [Units("")]
+        [Description("initial timestamp")]
+        public ulong initial_timestamp;
+        /// <summary>system id of the target   </summary>
+        [Units("")]
+        [Description("system id of the target")]
+        public byte target_system;
+        /// <summary>component ID of the target   </summary>
+        [Units("")]
+        [Description("component ID of the target")]
+        public byte target_component;
+        /// <summary>symetric key   </summary>
+        [Units("")]
+        [Description("symetric key")]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
+        public byte[] key;
+
     };
 
 }

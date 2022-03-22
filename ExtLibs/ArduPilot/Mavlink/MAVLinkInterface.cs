@@ -1330,6 +1330,46 @@ Mission Planner waits for 2 valid heartbeat packets before connecting");
             _bytesSentSubj.OnNext(line.Length);
             return true;
         }
+        public bool sendKey(string userseed, byte[] key = null)
+        {
+            byte[] shauser;
+            bool clearkey = false;
+
+            if (key == null)
+            {
+                clearkey = String.IsNullOrEmpty(userseed);
+
+                // sha the user input string
+                SHA256Managed signit = new SHA256Managed();
+                shauser = signit.ComputeHash(Encoding.UTF8.GetBytes(userseed));
+                Array.Resize(ref shauser, 32);
+            }
+            else
+            {
+                shauser = key;
+                Array.Resize(ref shauser, 32);
+            }
+
+            mavlink_aes_key_t sign = new mavlink_aes_key_t();
+            if (!clearkey)
+            {
+                MAV.signingKey = shauser;
+                sign.initial_timestamp = (UInt64)((DateTime.UtcNow - new DateTime(2015, 1, 1)).TotalMilliseconds * 100);
+                sign.key = shauser;
+            }
+            else
+            {
+                MAV.signingKey = new byte[32];
+                sign.initial_timestamp = 0;
+                sign.key = new byte[32];
+            }
+            sign.target_component = (byte)compidcurrent;
+            sign.target_system = (byte)sysidcurrent;
+
+            generatePacket((int)MAVLINK_MSG_ID.AES_Key, sign, MAV.sysid, MAV.compid);
+
+            return true;
+        }
 
         public bool setupSigning(byte sysid, byte compid, string userseed, byte[] key = null)
         {

@@ -17,7 +17,7 @@ namespace MissionPlanner.Utilities
     {
         static Settings _instance;
 
-        public static string AppConfigName { get; set; } = "Mission Planner";
+        public static string AppConfigName { get; set; } = "Aim Planner";
 
         public static Settings Instance
         {
@@ -318,7 +318,7 @@ namespace MissionPlanner.Utilities
                 return CustomUserDataDirectory + Path.DirectorySeparatorChar + AppConfigName +
                        Path.DirectorySeparatorChar;
 
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + Path.DirectorySeparatorChar + AppConfigName +
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos) + Path.DirectorySeparatorChar + AppConfigName +
                           Path.DirectorySeparatorChar;
 
             return path;

@@ -76,6 +76,7 @@ namespace MissionPlanner.GCSViews
             this.coords1 = new MissionPlanner.Controls.Coords();
             this.lbl_status = new System.Windows.Forms.Label();
             this.panelWaypoints = new System.Windows.Forms.Panel();
+            this.myButtonMark = new MissionPlanner.Controls.MyButton();
             this.buttonReArrangeMission = new MissionPlanner.Controls.MyButton();
             this.labelInputLong = new System.Windows.Forms.Label();
             this.labelInputLat = new System.Windows.Forms.Label();
@@ -122,6 +123,9 @@ namespace MissionPlanner.GCSViews
             this.lbl_wpfile = new System.Windows.Forms.Label();
             this.BUT_loadwpfile = new MissionPlanner.Controls.MyButton();
             this.BUT_saveWPFile = new MissionPlanner.Controls.MyButton();
+            this.groupBoxWindHdg = new System.Windows.Forms.GroupBox();
+            this.radioButtontailwWind = new System.Windows.Forms.RadioButton();
+            this.radioButtonHeadWind = new System.Windows.Forms.RadioButton();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panelMap = new System.Windows.Forms.Panel();
             this.lbl_homedist = new System.Windows.Forms.Label();
@@ -231,6 +235,7 @@ namespace MissionPlanner.GCSViews
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBoxWindHdg.SuspendLayout();
             this.panelMap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -406,6 +411,7 @@ namespace MissionPlanner.GCSViews
             // 
             // panelWaypoints
             // 
+            this.panelWaypoints.Controls.Add(this.myButtonMark);
             this.panelWaypoints.Controls.Add(this.buttonReArrangeMission);
             this.panelWaypoints.Controls.Add(this.labelInputLong);
             this.panelWaypoints.Controls.Add(this.labelInputLat);
@@ -430,6 +436,13 @@ namespace MissionPlanner.GCSViews
             this.panelWaypoints.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelWaypoints.Name = "panelWaypoints";
             // 
+            // myButtonMark
+            // 
+            resources.ApplyResources(this.myButtonMark, "myButtonMark");
+            this.myButtonMark.Name = "myButtonMark";
+            this.myButtonMark.UseVisualStyleBackColor = true;
+            this.myButtonMark.Click += new System.EventHandler(this.myButtonMark_Click);
+            // 
             // buttonReArrangeMission
             // 
             resources.ApplyResources(this.buttonReArrangeMission, "buttonReArrangeMission");
@@ -451,12 +464,12 @@ namespace MissionPlanner.GCSViews
             // 
             resources.ApplyResources(this.textBoxInputLong, "textBoxInputLong");
             this.textBoxInputLong.Name = "textBoxInputLong";
-            this.textBoxInputLong.TextChanged += new System.EventHandler(this.textBoxInputLong_TextChanged);
             // 
             // textBoxInputLat
             // 
             resources.ApplyResources(this.textBoxInputLat, "textBoxInputLat");
             this.textBoxInputLat.Name = "textBoxInputLat";
+            this.textBoxInputLat.TextChanged += new System.EventHandler(this.textBoxInputLat_TextChanged);
             // 
             // buttonJSRMission
             // 
@@ -715,6 +728,7 @@ namespace MissionPlanner.GCSViews
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.panel5);
             this.flowLayoutPanel1.Controls.Add(this.panel1);
+            this.flowLayoutPanel1.Controls.Add(this.groupBoxWindHdg);
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
@@ -782,6 +796,28 @@ namespace MissionPlanner.GCSViews
             this.BUT_saveWPFile.Name = "BUT_saveWPFile";
             this.BUT_saveWPFile.UseVisualStyleBackColor = true;
             this.BUT_saveWPFile.Click += new System.EventHandler(this.BUT_saveWPFile_Click);
+            // 
+            // groupBoxWindHdg
+            // 
+            this.groupBoxWindHdg.Controls.Add(this.radioButtontailwWind);
+            this.groupBoxWindHdg.Controls.Add(this.radioButtonHeadWind);
+            resources.ApplyResources(this.groupBoxWindHdg, "groupBoxWindHdg");
+            this.groupBoxWindHdg.Name = "groupBoxWindHdg";
+            this.groupBoxWindHdg.TabStop = false;
+            // 
+            // radioButtontailwWind
+            // 
+            resources.ApplyResources(this.radioButtontailwWind, "radioButtontailwWind");
+            this.radioButtontailwWind.Name = "radioButtontailwWind";
+            this.radioButtontailwWind.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonHeadWind
+            // 
+            resources.ApplyResources(this.radioButtonHeadWind, "radioButtonHeadWind");
+            this.radioButtonHeadWind.Checked = true;
+            this.radioButtonHeadWind.Name = "radioButtonHeadWind";
+            this.radioButtonHeadWind.TabStop = true;
+            this.radioButtonHeadWind.UseVisualStyleBackColor = true;
             // 
             // splitter2
             // 
@@ -1527,6 +1563,8 @@ namespace MissionPlanner.GCSViews
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBoxWindHdg.ResumeLayout(false);
+            this.groupBoxWindHdg.PerformLayout();
             this.panelMap.ResumeLayout(false);
             this.panelMap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -1711,5 +1749,9 @@ namespace MissionPlanner.GCSViews
         private Label labelInputLong;
         private Label labelInputLat;
         private MyButton buttonReArrangeMission;
+        private MyButton myButtonMark;
+        private GroupBox groupBoxWindHdg;
+        private RadioButton radioButtontailwWind;
+        private RadioButton radioButtonHeadWind;
     }
 }

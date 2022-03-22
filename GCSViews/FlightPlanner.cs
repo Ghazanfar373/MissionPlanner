@@ -58,6 +58,8 @@ namespace MissionPlanner.GCSViews
         {
             InitializeComponent();
             Init();
+            CMB_altmode.SelectedItem = altmode.Absolute;
+            CMB_altmode.SelectedIndex = 1;
         }
 
 
@@ -132,7 +134,7 @@ namespace MissionPlanner.GCSViews
         public GMapOverlay top;
         public GMapPolygon wppolygon;
         private GMapMarker CurrentMidLine;
-
+        
 
         public void Init()
         {
@@ -7703,6 +7705,8 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
         private void buttonJSRMission_Click(object sender, EventArgs e)
         {
+            CMB_altmode.SelectedItem = altmode.Absolute;
+            CMB_altmode.SelectedIndex = 1;
 
             if (Commands.Rows.Count > 0)
             {
@@ -7797,12 +7801,14 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
         //setfromMap(pll.Lat, pll.Lng, stepalt);
         private void reArrangeMission() {
             double val = 0.0;
+            int windZavia=0;
             float windDir = MainV2.comPort.MAV.cs.wind_dir;
             if (CustomMessageBox.Show("Wind driection value is: " + windDir + "\n Do you want updated mission? ", "Wind Direction",
                          MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
             {
 
-                int oppositeZavia = (int)windDir + 180; if (oppositeZavia > 360) oppositeZavia -= 360;
+                if (radioButtonHeadWind.Checked == true) windZavia = (int)windDir;
+                else if (radioButtontailwWind.Checked == true) { windZavia = (int)windDir + 180; if (windZavia > 360) windZavia -= 360; }
 
                 //get Current Waypoint number
                 int wpNum = (int)MainV2.comPort.MAV.cs.wpno;
@@ -7823,8 +7829,8 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
 
                     if (wpTotal - wpNum >= 3)
                     {
-                        double[] waypoints2ndLast = calculateWP(latitude, longitude, oppositeZavia, (altSeaLevel + 200) / 1000);
-                        double[] waypoints3rdLast = calculateWP(waypoints2ndLast[0], waypoints2ndLast[1], oppositeZavia, (altSeaLevel + 200) / 1000);
+                        double[] waypoints2ndLast = calculateWP(latitude, longitude, windZavia, (altSeaLevel + 200) / 1000);
+                        double[] waypoints3rdLast = calculateWP(waypoints2ndLast[0], waypoints2ndLast[1], windZavia, (altSeaLevel + 200) / 1000);
                         Commands.Rows.RemoveAt(wpTotal - 1);
                         Commands.Rows.RemoveAt(wpTotal - 2);
                         Commands.Rows.RemoveAt(wpTotal - 3);
@@ -7844,7 +7850,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                     }
                     else if (wpTotal - wpNum <= 2)
                     {
-                        double[] waypoints2ndLast = calculateWP(latitude, longitude, oppositeZavia, (altSeaLevel + 200) / 1000);
+                        double[] waypoints2ndLast = calculateWP(latitude, longitude, windZavia, (altSeaLevel + 200) / 1000);
                         Commands.Rows.RemoveAt(wpTotal - 1);
                         Commands.Rows.RemoveAt(wpTotal - 2);
                         AddWPToMap(waypoints2ndLast[0], waypoints2ndLast[1], (int)Math.Ceiling(altSeaLevel + 200));
@@ -7892,17 +7898,7 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
           
         }
 
-        private void textBoxInputLong_TextChanged(object sender, EventArgs e)
-        {
-            double lat = Double.Parse(textBoxInputLat.Text.ToString());
-            double lon = Double.Parse(textBoxInputLong.Text.ToString());
-            //string latstr = MainV2.comPort.MAV.cs.HomeLocation.Lat.ToString();
-            //string lonstr = MainV2.comPort.MAV.cs.HomeLocation.Lng.ToString();
-            System.Diagnostics.Debug.WriteLine(lat + " .... "+lon);
-            var altdata = srtm.getAltitude(lat, lon, MainMap.Zoom);
-            double altSeaLevel = altdata.alt * CurrentState.multiplieralt;
-            AddWPToMap(lat, lon, (int)Math.Ceiling(altSeaLevel) +200);
-        }
+        
 
         private void buttonReArrangeMission_Click(object sender, EventArgs e)
         {
@@ -7913,5 +7909,39 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
             System.Diagnostics.Debug.WriteLine("target bearing:  " +MainV2.comPort.MAV.cs.target_bearing);
             reArrangeMission();   
         }
+
+        private void myButtonMark_Click(object sender, EventArgs e)
+        {
+            
+          
+            if (textBoxInputLat.TextLength >=5 && textBoxInputLong.TextLength>=5) {
+                try
+                {
+                    double lat = Double.Parse(textBoxInputLat.Text.ToString());
+                    double lon = Double.Parse(textBoxInputLong.Text.ToString());
+                    //string latstr = MainV2.comPort.MAV.cs.HomeLocation.Lat.ToString();
+                    //string lonstr = MainV2.comPort.MAV.cs.HomeLocation.Lng.ToString();
+                    System.Diagnostics.Debug.WriteLine(lat + " .... " + lon);
+                    var altdata = srtm.getAltitude(lat, lon, MainMap.Zoom);
+                    double altSeaLevel = altdata.alt * CurrentState.multiplieralt;
+                    AddWPToMap(lat, lon, (int)Math.Ceiling(altSeaLevel) + 200);
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+                }else MessageBox.Show("Lat, Long values should be in correct decimal format.");
+        }
+
+        private void textBoxInputLat_TextChanged(object sender, EventArgs e)
+        {
+           // String LATITUDE_PATTERN = "^-?[0-9]{1,3}(?:\\.[0-9]{1,10})?$";
+           // if (System.Text.RegularExpressions.Regex.IsMatch(textBoxInputLat.Text, LATITUDE_PATTERN))
+           // {
+           //     MessageBox.Show("Please enter latitude value.");
+           //     textBoxInputLat.Text = textBoxInputLat.Text.Remove(textBoxInputLat.Text.Length - 1);
+           // }
+        }
+
+        
     }
+    
 }

@@ -51,7 +51,7 @@
     </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>bin\Release\net461\</OutputPath>
+    <OutputPath>bin\AimPlanner2.7\net461\</OutputPath>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <Prefer32Bit>false</Prefer32Bit>
     <CodeAnalysisRuleSet>
@@ -77,6 +77,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>AimPlanner</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="APMPlannerXplanes\**" />
@@ -458,6 +461,19 @@
     <Compile Include="Controls\DigitalSkyUI.Designer.cs">
       <DependentUpon>DigitalSkyUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Login.cs" />
+    <Compile Include="Controls\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MemAuthKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MemAuthKeys.Designer.cs">
+      <DependentUpon>MemAuthKeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SerialOutputCoT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -837,6 +853,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\EKFStatus.ko-KR.resx">
       <DependentUpon>EKFStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MemAuthKeys.resx">
+      <DependentUpon>MemAuthKeys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PropagationSettings.ko-KR.resx">
       <DependentUpon>PropagationSettings.cs</DependentUpon>
@@ -4608,6 +4630,10 @@
     <Content Include="quaternion.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\arrow-right.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\shield-key-outline.png" />
+    <Content Include="SwiftRNG.dll" />
     <None Include="Resources\crosshair.png" />
     <None Include="Resources\crosshair1.png" />
     <None Include="Resources\ico36.png" />

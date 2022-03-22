@@ -323,6 +323,16 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap arrow_right {
+            get {
+                object obj = ResourceManager.GetObject("arrow-right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap attocurrent {
             get {
                 object obj = ResourceManager.GetObject("attocurrent", resourceCulture);
@@ -1779,6 +1789,16 @@ namespace MissionPlanner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap refresh {
+            get {
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap rover {
             get {
                 object obj = ResourceManager.GetObject("rover", resourceCulture);
@@ -1822,6 +1842,16 @@ namespace MissionPlanner.Properties {
         public static System.Drawing.Bitmap shield_airplane {
             get {
                 object obj = ResourceManager.GetObject("shield-airplane", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap shield_key_outline {
+            get {
+                object obj = ResourceManager.GetObject("shield-key-outline", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

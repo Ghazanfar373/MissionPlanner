@@ -74,10 +74,10 @@ namespace MissionPlanner
             this.MenuInitConfig,
             this.MenuConfigTune,
             this.MenuSimulation,
+            this.MenuArduPilot,
             this.MenuHelp,
             this.MenuConnect,
             this.toolStripConnectionControl,
-            this.MenuArduPilot,
             this.sampleToolStripMenuItem});
             this.MainMenu.Name = "MainMenu";
             this.MainMenu.ShowItemToolTips = true;
@@ -174,6 +174,7 @@ namespace MissionPlanner
             // MenuHelp
             // 
             this.MenuHelp.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.MenuHelp.Image = global::MissionPlanner.Properties.Resources.shield_key_outline;
             resources.ApplyResources(this.MenuHelp, "MenuHelp");
             this.MenuHelp.Margin = new System.Windows.Forms.Padding(0);
             this.MenuHelp.Name = "MenuHelp";

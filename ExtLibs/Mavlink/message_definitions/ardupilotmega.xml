@@ -1578,7 +1578,8 @@
     </message>
     <!-- 219 to 224 RESERVED for more GOPRO-->
     <!-- 225 EFI_STATUS moved to common.xml -->
-    <message id="226" name="RPM">
+    <message id="226" name="
+             ">
       <description>RPM sensor output.</description>
       <field type="float" name="rpm1">RPM Sensor1.</field>
       <field type="float" name="rpm2">RPM Sensor2.</field>

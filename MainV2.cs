@@ -146,10 +146,10 @@ namespace MissionPlanner
             {
                 get
                 {
-                    if (File.Exists($"{running_directory}light_help_icon.png"))
-                        return Image.FromFile($"{running_directory}light_help_icon.png");
+                    if (File.Exists($"{running_directory}shield_key_outline.png"))
+                        return Image.FromFile($"{running_directory}shield_key_outline.png");
                     else
-                        return global::MissionPlanner.Properties.Resources.light_help_icon;
+                        return global::MissionPlanner.Properties.Resources.shield_key_outline;
                 }
             }
 
@@ -293,10 +293,10 @@ namespace MissionPlanner
             {
                 get
                 {
-                    if (File.Exists($"{running_directory}BannerStrip_removebg_preview.png"))
-                        return Image.FromFile($"{running_directory}BannerStrip_removebg_preview.png");
+                    if (File.Exists($"{running_directory}crosshair_black.png"))
+                        return Image.FromFile($"{running_directory}shield_key_outline.png");
                     else
-                        return global::MissionPlanner.Properties.Resources.BannerStrip_removebg_preview;
+                        return global::MissionPlanner.Properties.Resources.shield_key_outline;
                 }
             }
 
@@ -571,7 +571,7 @@ namespace MissionPlanner
             MenuSimulation.Visible = DisplayConfiguration.displaySimulation;
             MenuHelp.Visible = DisplayConfiguration.displayHelp;
             MissionPlanner.Controls.BackstageView.BackstageView.Advanced = DisplayConfiguration.isAdvancedMode;
-            MenuHelp.Visible = false;
+            MenuHelp.Visible = true;
             //sampleToolStripMenuItem.Image = global::MissionPlanner.Properties.Resources.BannerStrip;
             sampleToolStripMenuItem.Padding = new Padding(4);
             //sampleToolStripMenuItem.Margin = new Margi
@@ -1153,7 +1153,7 @@ namespace MissionPlanner
              (int) (200), 31);
             MenuArduPilot.ForeColor = Color.White;
             //MenuArduPilot.Width = MenuArduPilot.Image.Width;
-            sampleToolStripMenuItem.Image = new Bitmap(displayicons.banner,(int)(160),54);
+            sampleToolStripMenuItem.Image = new Bitmap(displayicons.banner,(int)(155),55);
             sampleToolStripMenuItem.Width = sampleToolStripMenuItem.Image.Width;
             sampleToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
             //sampleToolStripMenuItem.Visible = true;
@@ -1292,7 +1292,7 @@ namespace MissionPlanner
             MenuConfigTune.Image = displayicons.config_tuning;
             MenuConnect.Image = displayicons.connect;
             MenuHelp.Image = displayicons.help;
-            MenuArduPilot.Image = displayicons.banner;
+            //MenuArduPilot.Image = displayicons.;
             
 
 
@@ -4059,10 +4059,28 @@ namespace MissionPlanner
 
             log.Info("this   width " + this.Width + " height " + this.Height);
         }
-
+        LoginForm login;
         private void MenuHelp_Click(object sender, EventArgs e)
         {
-            MyView.ShowScreen("Help");
+            // MyView.ShowScreen("Help");
+            try
+            {
+                if ((Application.OpenForms["LoginForm"] as LoginForm) == null) //|| (Application.OpenForms["MemAuthKeys"] as MemAuthKeys) == null
+                {
+                    // Form is not open
+                    //remove old keys from ram
+                    //::!::Mavlink.MAVMemAuthKeys.AuthKey = new Mavlink.MAVMemAuthKeys.AuthKeys();
+                    login = new LoginForm(); //new MemAuthKeys();
+                    login.Show();
+                }//else //Form is already open
+
+
+            }
+            catch
+            {
+                CustomMessageBox.Show("login failed");
+                //CustomMessageBox.Show("Link open failed. check your default webpage association");
+            }
         }
 
 
@@ -4688,12 +4706,25 @@ namespace MissionPlanner
             try
             {
                 //System.Diagnostics.Process.Start("https://ardupilot.org/?utm_source=Menu&utm_campaign=MP");
-                System.Diagnostics.Process.Start(@"C:\Program Files (x86)\DetoRed2\DetoRed.exe");
+                //System.Diagnostics.Process.Start(Directory.GetCurrentDirectory+"\FxDeto\Run.bat");
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+ "\\AimPlanner2.7\\net461\\ExDetoRed2.7\\DetoRed.exe";
+               // Process[] processName = Process.GetProcessesByName(path);
+               // if (processName.Length == 0)
+               // {
+                    //string path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Release\\net461\\ExDetoRed2.7\\DetoRed.exe";
+                    //MessageBox.Show( path);
+                    System.Diagnostics.Process.Start(path);
+                //}
+                //else {
+                //    MessageBox.Show("Application is already running!");
+                //}
+               
             }
             catch
             {
                 //CustomMessageBox.Show("Failed to open url https://ardupilot.org");
-                CustomMessageBox.Show("Failed to open JSR app!");
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AimPlanner2.7\\net461\\ExDetoRed2.7\\DetoRed.exe";
+                CustomMessageBox.Show("Failed to open JSR app!" + "\n Path: "+path);
             }
         }
 
