@@ -2657,7 +2657,7 @@ namespace MissionPlanner.GCSViews
                 fenceExclusionToolStripMenuItem.Visible = true;
             }
             else
-            {
+            {                                         //Mouse Tracker... Inceptionest according to malware 
                 fenceInclusionToolStripMenuItem.Visible = false;
                 fenceExclusionToolStripMenuItem.Visible = false;
             }
@@ -7807,8 +7807,8 @@ Column 1: Field type (RALLY is the only one at the moment -- may have RALLY_LAND
                          MessageBoxButtons.YesNo) == (int)DialogResult.Yes)
             {
 
-                if (radioButtonHeadWind.Checked == true) windZavia = (int)windDir;
-                else if (radioButtontailwWind.Checked == true) { windZavia = (int)windDir + 180; if (windZavia > 360) windZavia -= 360; }
+                if (radioButtontailwWind.Checked == true) windZavia = (int)windDir;    
+                else if (radioButtonHeadWind.Checked == true) { windZavia = (int)windDir + 180; if (windZavia > 360) windZavia -= 360; }
 
                 //get Current Waypoint number
                 int wpNum = (int)MainV2.comPort.MAV.cs.wpno;
